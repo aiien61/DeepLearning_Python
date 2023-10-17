@@ -25,5 +25,27 @@ def plot_step_function():
     plt.show()
 
 
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+
+def plot_sigmoid():
+    x = np.arange(-5, 5, 0.1)
+    y = sigmoid(x)
+    plt.plot(x, y)
+    plt.ylim(-0.1, 1.1)
+    plt.show()
+
+
+def plot_step_function_and_sigmoid():
+    x = np.arange(-5, 5, 0.1)
+    y_sigmoid = sigmoid(x)
+    y_step = step_function_numpy(x)
+    plt.plot(x, y_sigmoid, label='sigmoid')
+    plt.plot(x, y_step, label='step function', linestyle='--')
+    plt.ylim(-0.1, 1.1)
+    plt.legend()
+    plt.show()
+
 if __name__ == '__main__':
-    plot_step_function()
+    plot_step_function_and_sigmoid()
