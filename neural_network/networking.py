@@ -1,5 +1,9 @@
+import sys, os
+sys.path.append(os.pardir)
+
 import numpy as np
 from activation_functions import sigmoid
+from dataset.mnist import load_mnist
 
 
 def run_neural_net_connecting_flow():
@@ -116,5 +120,35 @@ def softmax_in_probability():
     print(y)
     print(np.sum(y))
 
+
+def inspect_mnist():
+    (x_train, t_train), (x_test, t_test) = load_mnist(flatten=True, normalize=False)
+
+    print(x_train.shape)
+    print(t_train.shape)
+    print(x_test.shape)
+    print(t_test.shape)
+
+def show_mnist_image():
+    from PIL import Image
+
+    def img_show(img):
+        pil_img = Image.fromarray(np.uint8(img))
+        pil_img.show()
+
+    (x_train, t_train), (x_test, t_test) = load_mnist(flatten=True, normalize=False)
+
+    img = x_train[0]
+    label = t_train[0]
+    print(f'label: {label}')
+    print(f'img.shape: {img.shape}')
+
+    # reshape the img to original shape
+    img = img.reshape(28, 28)
+    print(f'img.shape: {img.shape}')
+
+    img_show(img)
+
+
 if __name__ == '__main__':
-    softmax_in_probability()
+    show_mnist_image()
