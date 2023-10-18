@@ -96,7 +96,10 @@ def load_mnist(normalize=True, flatten=True, one_hot_label=False):
 
     Parameters
     ----------
-    normalize : whether to normalise the pixel values of images to 0.0 ~ 1.0 
+    normalize : 
+        Whether to normalise the pixel values of images to 0.0 ~ 1.0. If False,
+        the pixel values remain in between 0 and 255.
+
     one_hot_label :
         If one_hot_label is True, the labels are returned as one-hot arrays
         One-hot arrays are arrays such as [0,0,1,0,0,0,0,0,0,0]
