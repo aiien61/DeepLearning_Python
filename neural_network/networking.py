@@ -159,7 +159,7 @@ def get_data():
 
 
 def init_sample_network():
-    """load smaple layers and sample weights of each nodes which has been 
+    """load smaple layers and sample weights of each nodes which have been 
     properly trained.
     """
     import pickle
