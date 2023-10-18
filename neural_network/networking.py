@@ -20,8 +20,8 @@ Z1 = sigmoid(A1)
 print(Z1)
 
 # first layer -> second layer
-# input layer: nodes Z1, bias 1
-# first layer: nodes Z2
+# first layer: nodes Z1, bias 1
+# second layer: nodes Z2
 
 W2 = np.array([[0.1, 0.2, 0.3], [0.4, 0.5, 0.6]])
 B2 = np.array([0.1, 0.2])
@@ -35,8 +35,8 @@ Z2 = sigmoid(A2)
 print(Z2)
 
 # second layer -> third layer
-# input layer: nodes Z2, bias 1
-# first layer: nodes Y
+# second layer: nodes Z2, bias 1
+# output layer: nodes Y
 
 def identity_function(x):
     return x
