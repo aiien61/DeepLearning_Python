@@ -55,6 +55,49 @@ def main():
     plt.show()
 
 
+def f2(x):
+    return np.sum(x ** 2)
+
+
+def f2_tmp1(x0):
+    return x0 ** 2 + 4 ** 2
+
+
+def f2_tmp2(x1):
+    return 3 ** 2 + x1 ** 2
+
+
+def partial():
+    print(numerical_diff(f2_tmp1, 3))
+    print(numerical_diff(f2_tmp2, 4))
+
+
+def numerical_gradient(f, x):
+    h = 1e-4
+    grad = np.zeros_like(x)  # gen an array with same size as x
+
+    for i in range(x.size):
+        tmp_val = x[i]
+
+        # f(x + h)
+        x[i] = tmp_val + h
+        fxh1 = f(x)
+
+        # f(x - h)
+        x[i] = tmp_val - h
+        fxh2 = f(x)
+
+        grad[i] = (fxh1 - fxh2) / (2 * h)
+        x[i] = tmp_val  # restore
+    
+    return grad
+
+
+def gradient():
+    print(numerical_gradient(f2, np.array([3.0, 4.0])))
+    print(numerical_gradient(f2, np.array([0.0, 2.0])))
+    print(numerical_gradient(f2, np.array([3.0, 0.0])))
+
 
 if __name__ == '__main__':
-    main()
+    gradient()
