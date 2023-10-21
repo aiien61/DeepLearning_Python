@@ -99,26 +99,5 @@ def gradient():
     print(numerical_gradient(f2, np.array([3.0, 0.0])))
 
 
-def gradient_descent(f, init_x, lr=0.01, step_num=100):
-    """
-    f: The target function that is aimed to be optimised
-    init_x: default value of x
-    lr: learning rate
-    step_num: The total times of executing the gradient method
-    """
-    x = init_x
-
-    for i in range(step_num):
-        grad = numerical_gradient(f, x)
-        x -= lr * grad
-    
-    return x
-
-
-def find_min_using_gradient_descent():
-    init_x = np.array([-3., 4.])
-    print(gradient_descent(f=f2, init_x=init_x, lr=0.1, step_num=100))
-
-
 if __name__ == '__main__':
-    find_min_using_gradient_descent()
+    gradient()
