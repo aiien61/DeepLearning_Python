@@ -72,9 +72,13 @@ def partial():
     print(numerical_diff(f2_tmp2, 4))
 
 
+# TODO: nditer
 def numerical_gradient(f, x):
     h = 1e-4
     grad = np.zeros_like(x)  # gen an array with same size as x
+    print(f'grad:{grad}')
+    print(f'x: {x}')
+    print(f'x.size:{x.size}')
 
     for i in range(x.size):
         tmp_val = x[i]
