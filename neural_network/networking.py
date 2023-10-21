@@ -2,7 +2,7 @@ import sys, os
 sys.path.append(os.pardir)
 
 import numpy as np
-from activation_functions import sigmoid
+from .activation_functions import sigmoid
 from dataset.mnist import load_mnist
 
 
