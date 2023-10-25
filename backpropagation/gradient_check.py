@@ -16,6 +16,8 @@ t_batch = t_train[:3]
 grad_numerical = network.numerical_gradient(x_batch, t_batch)
 grad_backprop = network.gradient(x_batch, t_batch)
 
+
+# TODO: the result is not good. check backpropagation gradient method
 for key in grad_numerical.keys():
     diff = np.average(np.abs(grad_backprop[key] - grad_numerical[key]))
     print(f"{key}: {diff}")
