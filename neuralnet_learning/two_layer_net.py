@@ -1,11 +1,10 @@
+import numpy as np
+from collections import OrderedDict
+from .numerical_differentiation import numerical_gradient
+
 import sys, os
 sys.path.append(os.pardir)
-
-import numpy as np
-from numerical_differentiation import numerical_gradient
 from backpropagation.layers import *
-from collections import OrderedDict
-
 
 sigmoid = lambda x: 1 / (1 + np.exp(-x))
 
