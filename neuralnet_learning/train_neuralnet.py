@@ -1,8 +1,10 @@
 import numpy as np
+from two_layer_net import TwoLayerNet
+
 import sys, os
 sys.path.append(os.pardir)
 from dataset.mnist import load_mnist
-from two_layer_net import TwoLayerNet
+
 
 (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
 
@@ -27,9 +29,8 @@ for i in range(iters_num):
     x_batch = x_train[batch_mask]
     t_batch = t_train[batch_mask]
 
-    # TODO: change to faster version
     # gradient
-    grad = network.numerical_gradient(x_batch, t_batch)
+    grad = network.gradient(x_batch, t_batch)
 
     # update parameters
     for key in ('W1', 'b1', 'W2', 'b2'):
