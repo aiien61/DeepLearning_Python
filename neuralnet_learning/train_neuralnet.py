@@ -4,6 +4,7 @@ from two_layer_net import TwoLayerNet
 import sys, os
 sys.path.append(os.pardir)
 from dataset.mnist import load_mnist
+from common.optimizers import SGD
 
 
 (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, one_hot_label=True)
@@ -22,6 +23,7 @@ learning_rate = 0.1
 iter_per_epoch = max(train_size / batch_size, 1)
 
 network = TwoLayerNet(input_size=28*28, hidden_size=50, output_size=10)
+optimizer = SGD()
 
 for i in range(iters_num):
     # get batch
@@ -30,11 +32,12 @@ for i in range(iters_num):
     t_batch = t_train[batch_mask]
 
     # gradient
-    grad = network.gradient(x_batch, t_batch)
+    grads = network.gradient(x_batch, t_batch)
 
     # update parameters
-    for key in ('W1', 'b1', 'W2', 'b2'):
-        network.params[key] -= learning_rate * grad[key]
+    # for key in ('W1', 'b1', 'W2', 'b2'):
+    #     network.params[key] -= learning_rate * grads[key]
+    optimizer.update(network.params, grads)
     
     # record process
     loss = network.loss(x_batch, t_batch)
