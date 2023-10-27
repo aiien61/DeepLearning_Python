@@ -24,10 +24,10 @@ if __name__ == "__main__":
         if i != 0:
             x = activations[i - 1]
         
-        # sd = 1
+        # std = 1
         # w = np.random.randn(node_num, node_num) * 1
         
-        # sd = 1
+        # std = 1
         # w = np.random.rand(node_num, node_num) * 0.01
 
         # Xavier's default
