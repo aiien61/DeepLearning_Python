@@ -23,8 +23,15 @@ if __name__ == "__main__":
     for i in range(hidden_layer_size):
         if i != 0:
             x = activations[i - 1]
+        
+        # sd = 1
         # w = np.random.randn(node_num, node_num) * 1
-        w = np.random.rand(node_num, node_num) * 0.01
+        
+        # sd = 1
+        # w = np.random.rand(node_num, node_num) * 0.01
+
+        # Xavier's default
+        w = np.random.rand(node_num, node_num) * np.sqrt(1 / node_num)
 
         a = np.dot(x, w)
         
@@ -38,5 +45,5 @@ if __name__ == "__main__":
         plt.title(f"{i+1}-layer")
         if i != 0:
             plt.yticks([], [])
-        plt.hist(a.flatten(), 10, range=(0, 1))
+        plt.hist(a.flatten(), 30, range=(0, 1))
     plt.show()
