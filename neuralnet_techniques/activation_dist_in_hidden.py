@@ -35,8 +35,8 @@ if __name__ == "__main__":
 
         a = np.dot(x, w)
         
-        # z = sigmoid(a)
-        z = relu(a)
+        z = sigmoid(a)
+        # z = relu(a)
         # z = tanh(a)
         activations[i] = z
     
