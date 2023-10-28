@@ -31,13 +31,22 @@ if __name__ == "__main__":
         # w = np.random.rand(node_num, node_num) * 0.01
 
         # Xavier's default
-        w = np.random.rand(node_num, node_num) * np.sqrt(1 / node_num)
+        # w = np.random.rand(node_num, node_num) * np.sqrt(1 / node_num)
+
+        # He's default
+        w = np.random.rand(node_num, node_num) * np.sqrt(2 / node_num)
 
         a = np.dot(x, w)
         
-        z = sigmoid(a)
-        # z = relu(a)
+        # activation
+        
+        # mathc Xavier's default weights
+        # z = sigmoid(a)
         # z = tanh(a)
+
+        # match He's default weights
+        z = relu(a)  
+        
         activations[i] = z
     
     for i, a in activations.items():
@@ -45,5 +54,8 @@ if __name__ == "__main__":
         plt.title(f"{i+1}-layer")
         if i != 0:
             plt.yticks([], [])
+        plt.xlim(0.1, 1)
+        plt.ylim(0, 7000)
         plt.hist(a.flatten(), 30, range=(0, 1))
+    
     plt.show()
