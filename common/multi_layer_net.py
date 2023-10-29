@@ -22,13 +22,13 @@ class MultiLayerNet:
         activation_layer = {'sigmoid': Sigmoid, 'relu': Relu}
         self.layers = OrderedDict()
         for idx in range(1, self.hidden_layer_num+1):
-            self.layers['Affine' + str(idx)] = Affine(self.params['W' + str(idx)],
-                                                      self.params['b' + str(idx)])
-            self.layers['Activation_function' + str(idx)] = activation_layer[activation]()
+            self.layers[f'Affine{idx}'] = Affine(self.params[f'W{idx}'],
+                                                 self.params[f'b{idx}'])
+            self.layers[f'Activation_function{idx}'] = activation_layer[activation]()
 
         idx = self.hidden_layer_num + 1
-        self.layers['Affine' + str(idx)] = Affine(self.params['W' + str(idx)],
-            self.params['b' + str(idx)])
+        self.layers[f'Affine{idx}'] = Affine(self.params[f'W{idx}'],
+                                             self.params[f'b{idx}'])
 
         self.last_layer = SoftmaxWithLoss()
 
@@ -42,8 +42,8 @@ class MultiLayerNet:
             elif str(weight_init_std).lower() in ('sigmoid', 'xavier'):
                 scale = np.sqrt(1.0 / all_size_list[idx - 1])  # sigmoid
 
-            self.params['W' + str(idx)] = scale * np.random.randn(all_size_list[idx-1], all_size_list[idx])
-            self.params['b' + str(idx)] = np.zeros(all_size_list[idx])
+            self.params[f'W{idx}'] = scale * np.random.randn(all_size_list[idx-1], all_size_list[idx])
+            self.params[f'b{idx}'] = np.zeros(all_size_list[idx])
 
 
     def predict(self, x):
@@ -58,7 +58,7 @@ class MultiLayerNet:
 
         weight_decay = 0
         for idx in range(1, self.hidden_layer_num + 2):
-            W = self.params['W' + str(idx)]
+            W = self.params[f'W{idx}']
             weight_decay += 0.5 * self.weight_decay_lambda * np.sum(W ** 2)
 
         return self.last_layer.forward(y, t) + weight_decay
@@ -78,8 +78,8 @@ class MultiLayerNet:
 
         grads = {}
         for idx in range(1, self.hidden_layer_num+2):
-            grads['W' + str(idx)] = numerical_gradient(loss_W, self.params['W' + str(idx)])
-            grads['b' + str(idx)] = numerical_gradient(loss_W, self.params['b' + str(idx)])
+            grads[f'W{idx}'] = numerical_gradient(loss_W, self.params[f'W{idx}'])
+            grads[f'b{idx}'] = numerical_gradient(loss_W, self.params[f'b{idx}'])
 
         return grads
 
@@ -99,7 +99,7 @@ class MultiLayerNet:
 
         grads = {}
         for idx in range(1, self.hidden_layer_num+2):
-            grads['W' + str(idx)] = self.layers['Affine' + str(idx)].dW + self.weight_decay_lambda * self.layers['Affine' + str(idx)].W
-            grads['b' + str(idx)] = self.layers['Affine' + str(idx)].db
+            grads[f'W{idx}'] = self.layers[f'Affine{idx}'].dW + self.weight_decay_lambda * self.layers[f'Affine{idx}'].W
+            grads[f'b{idx}'] = self.layers[f'Affine{idx}'].db
 
         return grads
