@@ -33,8 +33,22 @@ class MultiLayerNet:
         self.last_layer = SoftmaxWithLoss()
 
 
+    def __repr__(self):
+        result = {}
+        result['input_size'] = self.input_size
+        result['output_size'] = self.output_size
+        result['hidden_size_list'] = self.hidden_size_list
+        result['hidden_layer_num'] = self.hidden_layer_num
+        result['weight_decay_lambda'] = self.weight_decay_lambda
+        result['params'] = {k: v.shape for k, v in self.params.items()}
+        result['layers'] = self.layers
+        result['last_layer'] = self.last_layer
+        return str(result)
+
+
     def __init_weight(self, weight_init_std):
         all_size_list = [self.input_size] + self.hidden_size_list + [self.output_size]
+        print(f'all_size_list:', all_size_list)
         for idx in range(1, len(all_size_list)):
             scale = weight_init_std
             if str(weight_init_std).lower() in ('relu', 'he'):

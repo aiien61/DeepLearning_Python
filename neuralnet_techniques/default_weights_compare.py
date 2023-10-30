@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os, sys
+from pprint import pprint
 sys.path.append(os.pardir)
 from dataset.mnist import load_mnist
 from common.optimizers import SGD
@@ -8,10 +9,15 @@ from common.utils import smooth_curve
 from common.multi_layer_net import MultiLayerNet
 
 (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True)
+print(f'x_train: {x_train.shape}')
+print(f't_train: {t_train.shape}')
+print(f'x_test: {x_test.shape}')
+print(f't_test: {t_test.shape}')
 
 train_size = x_train.shape[0]
 batch_size = 128
 max_iterations = 200
+print(f'train_size: {train_size}')
 
 weight_init_types = {'std=0.01': 0.01, 'Xavier': 'sigmoid', 'He': 'relu'}
 optimizer = SGD(lr=0.01)
@@ -23,6 +29,9 @@ for key, weight_type in weight_init_types.items():
     networks[key] = MultiLayerNet(input_size=784, hidden_size_list=[100, 100, 100, 100],
                                   output_size=10, weight_init_std=weight_type)
     train_loss[key] = []
+
+print('networks:')
+pprint(networks)
 
 for i in range(max_iterations):
     batch_mask = np.random.choice(train_size, batch_size)
