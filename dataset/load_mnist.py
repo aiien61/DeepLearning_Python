@@ -8,10 +8,10 @@ import pickle
 
 
 key_file = {
-    'x_train': 'train-images-idx3-ubyte.gz',
-    'y_train': 'train-labels-idx1-ubyte.gz',
-    'x_test': 't10k-images-idx3-ubyte.gz',
-    'y_test': 't10k-labels-idx1-ubyte.gz'
+    'x_train': '../dataset/train-images-idx3-ubyte.gz',
+    'y_train': '../dataset/train-labels-idx1-ubyte.gz',
+    'x_test': '../dataset/t10k-images-idx3-ubyte.gz',
+    'y_test': '../dataset/t10k-labels-idx1-ubyte.gz'
 }
 
 
@@ -57,4 +57,4 @@ def load_mnist():
 
 if __name__ == "__main__":
     dataset = load_mnist()
-    print(dataset)
+    print(dataset['x_train'].shape)
