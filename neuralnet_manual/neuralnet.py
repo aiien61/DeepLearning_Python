@@ -39,7 +39,7 @@ def calculate(x_train, w_list, b_list):
     return val_dict
 
 
-def update(x_train, w_list, b_list, y_trai, eta):
+def update(x_train, w_list, b_list, y_train, eta):
     val_dict = {}
     val_dict = calculate(x_train, w_list, b_list)
     y_1, y_2 = val_dict['y_1'], val_dict['y_2']
