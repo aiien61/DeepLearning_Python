@@ -5,6 +5,10 @@ import numpy as np
 from .activation_functions import sigmoid
 from dataset.mnist import load_mnist
 
+#TODO
+def simple_network_computation_process():
+    X = np.array([1, 2])
+
 
 def run_neural_net_connecting_flow():
     # Input layer -> first layer
