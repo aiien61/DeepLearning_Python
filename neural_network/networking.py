@@ -2,13 +2,48 @@ import sys, os
 sys.path.append(os.pardir)
 
 import numpy as np
-from .activation_functions import sigmoid
+from activation_functions import sigmoid
 from dataset.mnist import load_mnist
 
-#TODO
-def simple_network_computation_process():
-    X = np.array([1, 2])
 
+def simple_network_computation_process_without_bias():
+    X = np.array([1, 2])
+    print(X.shape)
+
+    W = np.array([[1, 3, 5], [2, 4, 6]])
+    print(W)
+    print(W.shape)
+
+    Y = np.dot(X, W)
+    return Y
+
+
+def simple_network_computation_process_with_bias():
+    X = np.array([1, .5])
+    W1 = np.array([[0.1, 0.3, 0.5], [0.2, 0.4, 0.6]])
+    B1 = np.array([0.1, 0.2, 0.3])
+
+    print(X.shape)
+    print(W1.shape)
+    print(B1.shape)
+    
+    A1 = np.dot(X, W1) + B1
+    return A1
+
+def simple_network_computation_process_with_activation():
+    X = np.array([1, .5])
+    W1 = np.array([[0.1, 0.3, 0.5], [0.2, 0.4, 0.6]])
+    B1 = np.array([0.1, 0.2, 0.3])
+
+    print(X.shape)
+    print(W1.shape)
+    print(B1.shape)
+
+    A1 = np.dot(X, W1) + B1
+    print(A1)
+
+    Z2 = sigmoid(A1)
+    return Z2
 
 def run_neural_net_connecting_flow():
     # Input layer -> first layer
@@ -216,4 +251,5 @@ def neuralnet_inference_by_batch():
     print(f'Accuracy: {float(accuracy_cnt / len(x))}')
 
 if __name__ == '__main__':
-    neuralnet_inference_by_batch()
+    # neuralnet_inference_by_batch()
+    print(simple_network_computation_process_with_activation())
