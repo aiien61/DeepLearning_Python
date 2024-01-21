@@ -93,7 +93,7 @@ def run_neural_net_connecting_flow():
 
 
 def identity_function(x):
-        return x
+    return x
 
 
 def init_network():
