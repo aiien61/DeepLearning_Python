@@ -2,12 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-# bad
-def numerical_diff_bad(f, x):
+# worse version
+def numerical_diff_beta(f, x):
     h = 10e-50
     return (f(x + h) - f(x)) / h
 
-# better
+# better version
 def numerical_diff(f, x):
     h = 1e-4
     return (f(x + h) - f(x - h)) / (2 * h)
@@ -117,4 +117,4 @@ def gradient():
 
 
 if __name__ == '__main__':
-    gradient()
+    show_f_graph()
