@@ -65,10 +65,13 @@ if __name__ == "__main__":
     network = init_network()
 
     accuracy_cnt = 0
+    count = 0
     for i in range(len(x)):
         y = predict(network, x[i])
         p = np.argmax(y)
         if p == t[i]:
             accuracy_cnt += 1
+        count += 1
+        print(f"actual: {t[i]}, predict: {p}, accuracy_%: {accuracy_cnt / count}")
 
     print(f"Accuracy: {str(float(accuracy_cnt) / len(x))}")
