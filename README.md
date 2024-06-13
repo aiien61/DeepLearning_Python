@@ -1,3 +1,3 @@
-# 100-days-of-DL-challenges
+# DeepLearning_Python
 
 implementation from simple, fundamental structures to advanced, sophisticated ones 
